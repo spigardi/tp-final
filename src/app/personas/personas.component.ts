@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 interface Persona {
   nombre: string;
   apellido: string;
-  edad: number | null;
+  edad: number|null;
 }
 
 @Component({
@@ -13,10 +14,33 @@ interface Persona {
 })
 export class PersonasComponent {
   personas: Persona[] = [];
-  nuevaPersona: Persona = { nombre: '', apellido: '', edad: null };
+  // personaForm: FormGroup;
+  nuevaPersona:Persona= {
+    nombre: '',
+    apellido: '',
+    edad: null
+  };
+
+  /*constructor(private formBuilder: FormBuilder) {
+    this.personaForm = this.formBuilder.group({
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      edad: [0, [Validators.required, Validators.min(0)]]
+    });
+  }*/
 
   agregarPersona() {
-    this.personas.push(this.nuevaPersona);
-    this.nuevaPersona = { nombre: '', apellido: '', edad: null };
+    const persona: Persona = {
+      nombre: this.nuevaPersona.nombre,
+      apellido: this.nuevaPersona.apellido,
+      edad: this.nuevaPersona.edad,
+      
+    };
+    this.personas.push(persona);
+    this.nuevaPersona.nombre = "";
+    this.nuevaPersona.apellido ="";     
+    this.nuevaPersona.edad =null;
+
+    
   }
 }

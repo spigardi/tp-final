@@ -6,10 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./colectivos.component.css']
 })
 export class ColectivosComponent {
-  colectivos: any[] = [];
-  nuevoColectivo: any = {
+  colectivos: Colectivo[] = [];
+  nuevoColectivo: Colectivo = {
     patente: '',
-    cantidadAsientos: 0,
+    cantidadAsientos: null,
     modelo: {
       nombre: '',
       marca: ''
@@ -21,24 +21,28 @@ export class ColectivosComponent {
     this.colectivos.push(this.nuevoColectivo);
 
     // Reiniciar el objeto nuevoColectivo para permitir la creación de nuevos colectivos
-    this.nuevoColectivo = {
-      patente: '',
-      cantidadAsientos: 0,
-      modelo: {
-        nombre: '',
-        marca: ''
-      }
-    };
+    this.reiniciarNuevoColectivo();
   }
 
   reiniciarNuevoColectivo() {
     this.nuevoColectivo = {
       patente: '',
-      cantidadAsientos: 0,
+      cantidadAsientos:null,
       modelo: {
         nombre: '',
         marca: ''
       }
     };
   }
+}
+
+interface Colectivo {
+  patente: string;
+  cantidadAsientos: number | null;
+  modelo: ModeloColectivo;
+}
+
+interface ModeloColectivo {
+  nombre: string;
+  marca: string;
 }

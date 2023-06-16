@@ -1,23 +1,28 @@
 <h2>Colectivos</h2>
 
 <h3>Crear Colectivo</h3>
-<form (ngSubmit)="crearColectivo()">
-  <mat-form-field>
-    <input matInput placeholder="Patente" [(ngModel)]="nuevoColectivo.patente" required>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Cantidad de Asientos" type="number" [(ngModel)]="nuevoColectivo.cantidadAsientos" required>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Nombre del Modelo" [(ngModel)]="nuevoColectivo.modelo.nombre" required>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Marca del Modelo" [(ngModel)]="nuevoColectivo.modelo.marca" required>
-  </mat-form-field>
-  <button mat-raised-button color="primary" type="submit">Crear</button>
-</form>
+<div>
+  <label>Patente:</label>
+  <input type="text" [(ngModel)]="nuevoColectivo.patente">
+  <br>
+  <label>Cantidad de Asientos:</label>
+  <input type="number" [(ngModel)]="nuevoColectivo.cantidadAsientos">
+  <br>
+  <label>Modelo - Nombre:</label>
+  <input type="text" [(ngModel)]="nuevoColectivo.modelo.nombre">
+  <br>
+  <label>Modelo - Marca:</label>
+  <input type="text" [(ngModel)]="nuevoColectivo.modelo.marca">
+  <br>
+  <button (click)="crearColectivo()">Crear Colectivo</button>
+  <button (click)="reiniciarNuevoColectivo()">Cancelar</button>
+</div>
 
 <h3>Listado de Colectivos</h3>
 <ul>
-  <li *ngFor="let colectivo of colectivos">{{ colectivo.patente }} - {{ colectivo.modelo.nombre }} ({{ colectivo.modelo.marca }})</li>
+  <li *ngFor="let colectivo of colectivos">
+    <strong>Patente:</strong> {{ colectivo.patente }},
+    <strong>Cantidad de Asientos:</strong> {{ colectivo.cantidadAsientos }},
+    <strong>Modelo:</strong> {{ colectivo.modelo.nombre }} ({{ colectivo.modelo.marca }})
+  </li>
 </ul>

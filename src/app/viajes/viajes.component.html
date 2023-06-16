@@ -1,29 +1,32 @@
 <h2>Viajes</h2>
 
-<h3>Crear Viaje</h3>
-<div>
-  <label>Origen:</label>
-  <input type="text" [(ngModel)]="nuevoViaje.origen">
-  <br>
-  <label>Destino:</label>
-  <input type="text" [(ngModel)]="nuevoViaje.destino">
-  <br>
-  <label>Fecha:</label>
-  <input type="date" [(ngModel)]="nuevoViaje.fecha">
-  <br>
-  <label>Hora:</label>
-  <input type="time" [(ngModel)]="nuevoViaje.hora">
-  <br>
-  <button (click)="agregarViaje()">Crear Viaje</button>
-</div>
+<h3>agregar Viaje</h3>
+
+  <label for="lugarSalida">Lugar de salida:</label>
+  <input type="text" id="lugarSalida" [(ngModel)]="nuevoViaje.lugarSalida">
+
+  <label for="lugarDestino">Lugar de destino:</label>
+  <input type="text" id="lugarDestino" [(ngModel)]="nuevoViaje.lugarDestino">
+
+  <!-- Resto de campos del formulario, como el colectivo asignado, pasajeros, etc. -->
+
+  <label for="horaSalidaEstimada">Hora de salida estimada:</label>
+  <input type="text" id="horaSalidaEstimada" [(ngModel)]="nuevoViaje.horaSalidaEstimada">
+
+  <label for="horaLlegadaEstimada">Hora de llegada estimada:</label>
+  <input type="text" id="horaLlegadaEstimada" [(ngModel)]="nuevoViaje.horaLlegadaEstimada">
+
+  <button type="button" (click)="agregarViaje()">Crear Viaje</button>
+
 
 <h3>Listado de Viajes</h3>
 <ul>
+  <!-- Mostrar la lista de viajes -->
   <li *ngFor="let viaje of viajes">
-    <strong>Origen:</strong> {{ viaje.origen }},
-    <strong>Destino:</strong> {{ viaje.destino }},
-    <strong>Fecha:</strong> {{ viaje.fecha }},
-    <strong>Hora:</strong> {{ viaje.hora }}
+    <p>Lugar de salida: {{ viaje.lugarSalida }}</p>
+    <p>Lugar de destino: {{ viaje.lugarDestino }}</p>
+    <!-- Resto de la información del viaje -->
+    <p>Hora de salida estimada: {{ viaje.horaSalidaEstimada }}</p>
+    <p>Hora de llegada estimada: {{ viaje.horaLlegadaEstimada}}</p>
   </li>
 </ul>
-
