@@ -19,10 +19,32 @@
 </div>
 
 <h3>Listado de Colectivos</h3>
-<ul>
-  <li *ngFor="let colectivo of colectivos">
-    <strong>Patente:</strong> {{ colectivo.patente }},
-    <strong>Cantidad de Asientos:</strong> {{ colectivo.cantidadAsientos }},
-    <strong>Modelo:</strong> {{ colectivo.modelo.nombre }} ({{ colectivo.modelo.marca }})
-  </li>
-</ul>
+<table mat-table [dataSource]="colectivos" class="mat-elevation-z8">
+  <!-- Columna Patente -->
+  <ng-container matColumnDef="patente">
+    <th mat-header-cell *matHeaderCellDef> Patente </th>
+    <td mat-cell *matCellDef="let colectivo"> {{ colectivo.patente }} </td>
+  </ng-container>
+
+  <!-- Columna Cantidad de Asientos -->
+  <ng-container matColumnDef="cantidadAsientos">
+    <th mat-header-cell *matHeaderCellDef> Cantidad de Asientos </th>
+    <td mat-cell *matCellDef="let colectivo"> {{ colectivo.cantidadAsientos }} </td>
+  </ng-container>
+
+  <!-- Columna Modelo - Nombre -->
+  <ng-container matColumnDef="modeloNombre">
+    <th mat-header-cell *matHeaderCellDef> Modelo - Nombre </th>
+    <td mat-cell *matCellDef="let colectivo"> {{ colectivo.modelo.nombre }} </td>
+  </ng-container>
+
+  <!-- Columna Modelo - Marca -->
+  <ng-container matColumnDef="modeloMarca">
+    <th mat-header-cell *matHeaderCellDef> Modelo - Marca </th>
+    <td mat-cell *matCellDef="let colectivo"> {{ colectivo.modelo.marca }} </td>
+  </ng-container>
+
+  <!-- Definición de las columnas de la tabla -->
+  <tr mat-header-row *matHeaderRowDef="['patente', 'cantidadAsientos', 'modeloNombre', 'modeloMarca']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['patente', 'cantidadAsientos', 'modeloNombre', 'modeloMarca']"></tr>
+</table>

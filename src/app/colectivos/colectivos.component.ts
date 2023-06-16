@@ -1,40 +1,6 @@
 import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-colectivos',
-  templateUrl: './colectivos.component.html',
-  styleUrls: ['./colectivos.component.css']
-})
-export class ColectivosComponent {
-  colectivos: Colectivo[] = [];
-  nuevoColectivo: Colectivo = {
-    patente: '',
-    cantidadAsientos: null,
-    modelo: {
-      nombre: '',
-      marca: ''
-    }
-  };
-
-  crearColectivo() {
-    // Agregar lógica para guardar el nuevo colectivo en la lista de colectivos
-    this.colectivos.push(this.nuevoColectivo);
-
-    // Reiniciar el objeto nuevoColectivo para permitir la creación de nuevos colectivos
-    this.reiniciarNuevoColectivo();
-  }
-
-  reiniciarNuevoColectivo() {
-    this.nuevoColectivo = {
-      patente: '',
-      cantidadAsientos:null,
-      modelo: {
-        nombre: '',
-        marca: ''
-      }
-    };
-  }
-}
+import { MatTableDataSource } from '@angular/material/table';
+import { BehaviorSubject } from 'rxjs';
 
 interface Colectivo {
   patente: string;
@@ -45,4 +11,57 @@ interface Colectivo {
 interface ModeloColectivo {
   nombre: string;
   marca: string;
+}
+
+@Component({
+  selector: 'app-colectivos',
+  templateUrl: './colectivos.component.html',
+  styleUrls: ['./colectivos.component.css']
+})
+export class ColectivosComponent {
+  colectivos: BehaviorSubject<Colectivo[]> = new BehaviorSubject<Colectivo[]>([]);
+  nuevoColectivo: Colectivo = {
+    patente: '',
+    cantidadAsientos: null,
+    modelo: {
+      nombre: '',
+      marca: ''
+    }
+  };
+  dataSource: MatTableDataSource<Colectivo>;
+
+  displayedColumns: string[] = ['patente', 'cantidadAsientos', 'modeloNombre', 'modeloMarca'];
+
+  constructor() {
+    this.dataSource = new MatTableDataSource<Colectivo>([]);
+    this.colectivos.subscribe(data => {
+      this.dataSource.data = data;
+    });
+  }
+
+  crearColectivo() {
+    const colectivo: Colectivo = {
+      patente: this.nuevoColectivo.patente,
+      cantidadAsientos: this.nuevoColectivo.cantidadAsientos,
+      modelo: {
+        nombre: this.nuevoColectivo.modelo.nombre,
+        marca: this.nuevoColectivo.modelo.marca
+      }
+    };
+    const colectivosActuales = this.colectivos.getValue();
+    colectivosActuales.push(colectivo);
+    this.colectivos.next(colectivosActuales);
+    this.reiniciarNuevoColectivo();
+  }
+
+  reiniciarNuevoColectivo() {
+    this.nuevoColectivo = {
+      patente: '',
+      cantidadAsientos: null,
+      modelo: {
+        nombre: '',
+        marca: ''
+      }
+    };
+  }
 }
