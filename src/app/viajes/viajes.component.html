@@ -1,0 +1,29 @@
+<h2>Viajes</h2>
+
+<h3>Crear Viaje</h3>
+<div>
+  <label>Origen:</label>
+  <input type="text" [(ngModel)]="nuevoViaje.origen">
+  <br>
+  <label>Destino:</label>
+  <input type="text" [(ngModel)]="nuevoViaje.destino">
+  <br>
+  <label>Fecha:</label>
+  <input type="date" [(ngModel)]="nuevoViaje.fecha">
+  <br>
+  <label>Hora:</label>
+  <input type="time" [(ngModel)]="nuevoViaje.hora">
+  <br>
+  <button (click)="agregarViaje()">Crear Viaje</button>
+</div>
+
+<h3>Listado de Viajes</h3>
+<ul>
+  <li *ngFor="let viaje of viajes">
+    <strong>Origen:</strong> {{ viaje.origen }},
+    <strong>Destino:</strong> {{ viaje.destino }},
+    <strong>Fecha:</strong> {{ viaje.fecha }},
+    <strong>Hora:</strong> {{ viaje.hora }}
+  </li>
+</ul>
+
