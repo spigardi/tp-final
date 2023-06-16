@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef} from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {MatTableModule} from '@angular/material/table';
+
 
 interface Persona {
   nombre: string;
@@ -13,34 +17,40 @@ interface Persona {
   styleUrls: ['./personas.component.css']
 })
 export class PersonasComponent {
-  personas: Persona[] = [];
-  // personaForm: FormGroup;
+  personas: BehaviorSubject<Persona[]> = new BehaviorSubject<Persona[]>([]);
+  /*personas: Persona[] = [
+    { nombre: "Alejandro", apellido: "Spigardi", edad: 32 },
+    { nombre: "juan", apellido: "gomez", edad: 75 }
+  ];*/
   nuevaPersona:Persona= {
     nombre: '',
     apellido: '',
     edad: null
   };
 
-  /*constructor(private formBuilder: FormBuilder) {
-    this.personaForm = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      edad: [0, [Validators.required, Validators.min(0)]]
-    });
-  }*/
+  constructor(private changeDetectorRef: ChangeDetectorRef) {
+    // ...
+  }
+
+  
 
   agregarPersona() {
+
     const persona: Persona = {
       nombre: this.nuevaPersona.nombre,
       apellido: this.nuevaPersona.apellido,
       edad: this.nuevaPersona.edad,
       
     };
-    this.personas.push(persona);
+    const personasActuales = this.personas.getValue();
+    personasActuales.push(persona);
+    this.personas.next(personasActuales);
+
+    this.changeDetectorRef.detectChanges();
     this.nuevaPersona.nombre = "";
     this.nuevaPersona.apellido ="";     
     this.nuevaPersona.edad =null;
 
-    
+    console.log(this.personas)
   }
 }

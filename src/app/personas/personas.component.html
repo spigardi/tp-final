@@ -9,8 +9,27 @@
 
 
 <h3>Listado de Personas</h3>
-<ul>
-  <li *ngFor="let persona of personas">
-    Nombre: {{ persona.nombre }} - Apellido: {{ persona.apellido }} - Edad: {{ persona.edad }}
-  </li>
-</ul>
+<table mat-table [dataSource]="personas" class="mat-elevation-z8">
+  <!-- Columna Nombre -->
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let persona"> {{ persona.nombre }} </td>
+  </ng-container>
+
+  <!-- Columna Apellido -->
+  <ng-container matColumnDef="apellido">
+    <th mat-header-cell *matHeaderCellDef> Apellido </th>
+    <td mat-cell *matCellDef="let persona"> {{ persona.apellido }} </td>
+  </ng-container>
+
+  <!-- Columna Edad -->
+  <ng-container matColumnDef="edad">
+    <th mat-header-cell *matHeaderCellDef> Edad </th>
+    <td mat-cell *matCellDef="let persona"> {{ persona.edad }} </td>
+  </ng-container>
+
+  <!-- Definición de las columnas de la tabla -->
+  <tr mat-header-row *matHeaderRowDef="['nombre', 'apellido', 'edad']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['nombre', 'apellido', 'edad']"></tr>
+</table>
+
