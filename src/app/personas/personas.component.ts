@@ -3,9 +3,10 @@ import { BehaviorSubject } from 'rxjs';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
-
+import { HttpClient } from '@angular/common/http';
 
 interface Persona {
+  id : number;
   nombre: string;
   apellido: string;
   edad: number|null;
@@ -23,13 +24,21 @@ export class PersonasComponent {
     { nombre: "juan", apellido: "gomez", edad: 75 }
   ];*/
   nuevaPersona:Persona= {
+    id : 0,
     nombre: '',
     apellido: '',
     edad: null
   };
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private changeDetectorRef: ChangeDetectorRef,private http: HttpClient) {
     // ...
+  }
+
+  ngOnInit() {
+    this.http.get('assets/personas.json').subscribe((data: any) => {
+      console.log(data); // Aquí tienes acceso a los datos del archivo JSON
+      this.personas = data;
+    });
   }
 
   
@@ -37,6 +46,7 @@ export class PersonasComponent {
   agregarPersona() {
 
     const persona: Persona = {
+      id :  this.personas.getValue().length + 1,
       nombre: this.nuevaPersona.nombre,
       apellido: this.nuevaPersona.apellido,
       edad: this.nuevaPersona.edad,

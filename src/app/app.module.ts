@@ -12,13 +12,20 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
+import { PersonDetailComponent } from './person-detail/person-detail.component';
+import { ColectivosDetailComponent } from './colectivos-detail/colectivos-detail.component';
+import { ViajesDetailComponent } from './viajes-detail/viajes-detail.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     PersonasComponent,
     ColectivosComponent,
-    ViajesComponent
+    ViajesComponent,
+    PersonDetailComponent,
+    ColectivosDetailComponent,
+    ViajesDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +37,7 @@ import { MatTableModule } from '@angular/material/table';
     FormsModule,
     ReactiveFormsModule,
     MatTableModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

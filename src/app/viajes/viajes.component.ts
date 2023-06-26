@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { BehaviorSubject } from 'rxjs';
+
 
 interface Viaje {
+  id: number;
   origen: string;
   destino: string;
   fecha: string;
@@ -17,8 +21,9 @@ interface Viaje {
   styleUrls: ['./viajes.component.css']
 })
 export class ViajesComponent {
-  viajes: Viaje[] = [];
+  viajes: BehaviorSubject<Viaje[]> = new BehaviorSubject<Viaje[]>([]);
   nuevoViaje: Viaje = {
+    id:0,
     origen: '',
     destino: '',
     fecha: '',
@@ -29,8 +34,20 @@ export class ViajesComponent {
     horaLlegadaEstimada: ''
   };
 
+  dataSource: MatTableDataSource<Viaje>;
+
+  displayedColumns: string[] = ['id', 'origen', 'destino', 'fecha','hora','lugarSalida','lugarDestino','horaSalidaEstimada','horaLlegadaEstimada'];
+
+  constructor() {
+    this.dataSource = new MatTableDataSource(this.viajes.getValue());
+    this.viajes.subscribe(data => {
+      this.dataSource.data = data;
+    });
+  }
+
   agregarViaje() {  // Cambio de nombre: crearViaje() -> agregarViaje()
     const viaje: Viaje = {
+      id:0,
       origen: this.nuevoViaje.origen,
       destino: this.nuevoViaje.destino,
       fecha: this.nuevoViaje.fecha,
@@ -41,14 +58,27 @@ export class ViajesComponent {
       horaLlegadaEstimada: this.nuevoViaje.horaLlegadaEstimada
     };
 
-    this.viajes.push(viaje);
-    this.nuevoViaje.origen = '';
-    this.nuevoViaje.destino = '';
-    this.nuevoViaje.fecha = '';
-    this.nuevoViaje.hora = '';
-    this.nuevoViaje.lugarSalida = '';
-    this.nuevoViaje.lugarDestino = '';
-    this.nuevoViaje.horaSalidaEstimada = '';
-    this.nuevoViaje.horaLlegadaEstimada = '';
+    const viajesActuales = this.viajes.getValue();
+    viajesActuales.push(viaje);
+    this.viajes.next(viajesActuales);
+    this.dataSource.data = this.viajes.getValue();
+    this.reiniciarNuevoViaje();
+
+   
+  }
+
+  reiniciarNuevoViaje() {
+    this.nuevoViaje = {
+      id: 0,
+      origen: '',
+      destino: '',
+      fecha:"",
+      hora:"",
+      lugarSalida:"",
+      lugarDestino:"",
+      horaSalidaEstimada:"",
+      horaLlegadaEstimada:"",
+      
+    };
   }
 }

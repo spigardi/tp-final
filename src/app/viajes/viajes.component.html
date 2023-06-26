@@ -1,32 +1,74 @@
 <h2>Viajes</h2>
 
-<h3>agregar Viaje</h3>
+<h3>Agregar Viaje</h3>
+<div>
+  <label>Origen:</label>
+  <input type="text" [(ngModel)]="nuevoViaje.origen">
+  <br>
+  <label>Destino:</label>
+  <input type="text" [(ngModel)]="nuevoViaje.destino">
+  <br>
+  <label>Fecha:</label>
+  <input type="text" [(ngModel)]="nuevoViaje.fecha">
+  <br>
+  <label>Hora:</label>
+  <input type="text" [(ngModel)]="nuevoViaje.hora">
+  <br>
+  <label>Lugar de Salida:</label>
+  <input type="text" [(ngModel)]="nuevoViaje.lugarSalida">
+  <br>
+  <label>Lugar de Destino:</label>
+  <input type="text" [(ngModel)]="nuevoViaje.lugarDestino">
+  <br>
+  <label>Hora de Salida Estimada:</label>
+  <input type="text" [(ngModel)]="nuevoViaje.horaSalidaEstimada">
+  <br>
+  <label>Hora de Llegada Estimada:</label>
+  <input type="text" [(ngModel)]="nuevoViaje.horaLlegadaEstimada">
+  <br>
+  <button (click)="agregarViaje()">Agregar Viaje</button>
+</div>
 
-  <label for="lugarSalida">Lugar de salida:</label>
-  <input type="text" id="lugarSalida" [(ngModel)]="nuevoViaje.lugarSalida">
+<br>
 
-  <label for="lugarDestino">Lugar de destino:</label>
-  <input type="text" id="lugarDestino" [(ngModel)]="nuevoViaje.lugarDestino">
-
-  <!-- Resto de campos del formulario, como el colectivo asignado, pasajeros, etc. -->
-
-  <label for="horaSalidaEstimada">Hora de salida estimada:</label>
-  <input type="text" id="horaSalidaEstimada" [(ngModel)]="nuevoViaje.horaSalidaEstimada">
-
-  <label for="horaLlegadaEstimada">Hora de llegada estimada:</label>
-  <input type="text" id="horaLlegadaEstimada" [(ngModel)]="nuevoViaje.horaLlegadaEstimada">
-
-  <button type="button" (click)="agregarViaje()">Crear Viaje</button>
-
-
-<h3>Listado de Viajes</h3>
-<ul>
-  <!-- Mostrar la lista de viajes -->
-  <li *ngFor="let viaje of viajes">
-    <p>Lugar de salida: {{ viaje.lugarSalida }}</p>
-    <p>Lugar de destino: {{ viaje.lugarDestino }}</p>
-    <!-- Resto de la información del viaje -->
-    <p>Hora de salida estimada: {{ viaje.horaSalidaEstimada }}</p>
-    <p>Hora de llegada estimada: {{ viaje.horaLlegadaEstimada}}</p>
-  </li>
-</ul>
+<table mat-table [dataSource]="viajes" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let viaje"> {{viaje.id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="origen">
+    <th mat-header-cell *matHeaderCellDef> Origen </th>
+    <td mat-cell *matCellDef="let viaje"> {{viaje.origen}} </td>
+  </ng-container>
+  <ng-container matColumnDef="destino">
+    <th mat-header-cell *matHeaderCellDef> Destino </th>
+    <td mat-cell *matCellDef="let viaje"> {{viaje.destino}} </td>
+  </ng-container>
+  <ng-container matColumnDef="fecha">
+    <th mat-header-cell *matHeaderCellDef> Fecha </th>
+    <td mat-cell *matCellDef="let viaje"> {{viaje.fecha}} </td>
+  </ng-container>
+  <ng-container matColumnDef="hora">
+    <th mat-header-cell *matHeaderCellDef> Hora </th>
+    <td mat-cell *matCellDef="let viaje"> {{viaje.hora}} </td>
+  </ng-container>
+  <ng-container matColumnDef="lugarSalida">
+    <th mat-header-cell *matHeaderCellDef> Lugar de Salida </th>
+    <td mat-cell *matCellDef="let viaje"> {{viaje.lugarSalida}} </td>
+  </ng-container>
+  <ng-container matColumnDef="lugarDestino">
+    <th mat-header-cell *matHeaderCellDef> Lugar de Destino </th>
+    <td mat-cell *matCellDef="let viaje"> {{viaje.lugarDestino}} </td>
+  </ng-container>
+  <ng-container matColumnDef="horaSalidaEstimada">
+    <th mat-header-cell *matHeaderCellDef> hora de salida estimada </th>
+    <td mat-cell *matCellDef="let viaje"> {{viaje.horaSalidaEstimada}} </td>
+  </ng-container>
+  <ng-container matColumnDef="horaLlegadaEstimada">
+    <th mat-header-cell *matHeaderCellDef> hora llegada estimada </th>
+    <td mat-cell *matCellDef="let viaje"> {{viaje.horaLlegadaEstimada}} </td>
+  </ng-container>
+  <!-- Definición de las columnas de la tabla -->
+  <tr mat-header-row *matHeaderRowDef="['id', 'origen', 'destino', 'fecha','hora','lugarSalida','lugarDestino','horaSalidaEstimada','horaLlegadaEstimada']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['id', 'origen', 'destino', 'fecha','hora','lugarSalida','lugarDestino','horaSalidaEstimada','horaLlegadaEstimada']"></tr>
+  </table>
