@@ -1,1 +1,29 @@
-<p>person-detail works!</p>
+<h2>Detalles de la persona</h2>
+
+<form [formGroup]="personForm" (submit)="onSubmit()">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" formControlName="nombre">
+      <div *ngIf="personForm.controls['nombre'].invalid && personForm.controls['nombre'].touched">
+        <div class="alert alert-danger">Nombre es requerido</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="apellido">Apellido</label>
+      <input type="text" formControlName="apellido">
+      <div *ngIf="personForm.controls['apellido'].invalid && personForm.controls['apellido'].touched">
+        <div class="alert alert-danger">Apellido es requerido</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="edad">Edad</label>
+      <input type="number" formControlName="edad">
+      <div *ngIf="personForm.controls['edad'].invalid && personForm.controls['edad'].touched">
+        <div class="alert alert-danger">Edad es requerida</div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="personForm.invalid">Guardar</button>
+    
+  </form>
+  <a routerLink="/personas">Volver al listado</a>
+  

@@ -1,12 +1,4 @@
-<h2>Personas</h2>
-
-<h3>Crear Persona</h3>
-
-  <input matInput placeholder="Nombre" [(ngModel)]="nuevaPersona.nombre">
-  <input matInput placeholder="Apellido" [(ngModel)]="nuevaPersona.apellido">
-  <input matInput type="number" placeholder="Edad" [(ngModel)]="nuevaPersona.edad">
-  <button mat-raised-button color="primary" type="submit" (click)="agregarPersona()">Crear Persona</button>
-
+<a routerLink="/personas/agregar">nueva</a>
 
 <h3>Listado de Personas</h3>
 <table mat-table [dataSource]="personas" class="mat-elevation-z8">
