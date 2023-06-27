@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'colectivos', component: ColectivosComponent },
   { path: 'viajes', component: ViajesComponent },
   { path: 'personas/agregar', component: PersonDetailComponent },
+  { path: 'personas/editar/:id', component: PersonDetailComponent },
 ];
 
 @NgModule({
