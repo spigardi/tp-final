@@ -1,1 +1,65 @@
-<p>viajes-detail works!</p>
+<h2>Detalles del viaje</h2>
+
+<form [formGroup]="viajesForm" (submit)="onSubmit()">
+  <div class="form-group">
+    <label for="origen">Origen</label>
+    <input type="text" formControlName="origen">
+    <div *ngIf="viajesForm.controls['origen'].invalid && viajesForm.controls['origen'].touched">
+      <div class="alert alert-danger">El origen es requerido</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="destino">Destino</label>
+    <input type="text" formControlName="destino">
+    <div *ngIf="viajesForm.controls['destino'].invalid && viajesForm.controls['destino'].touched">
+      <div class="alert alert-danger">El destino es requerido</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="fecha">Fecha</label>
+    <input type="text" formControlName="fecha">
+    <div *ngIf="viajesForm.controls['fecha'].invalid && viajesForm.controls['fecha'].touched">
+      <div class="alert alert-danger">La fecha es requerida</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="hora">Hora</label>
+    <input type="text" formControlName="hora">
+    <div *ngIf="viajesForm.controls['hora'].invalid && viajesForm.controls['hora'].touched">
+      <div class="alert alert-danger">La hora es requerida</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="lugarSalida">Lugar de salida</label>
+    <input type="text" formControlName="lugarSalida">
+    <div *ngIf="viajesForm.controls['lugarSalida'].invalid && viajesForm.controls['lugarSalida'].touched">
+      <div class="alert alert-danger">El lugar de salida es requerido</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="lugarDestino">Lugar de destino</label>
+    <input type="text" formControlName="lugarDestino">
+    <div *ngIf="viajesForm.controls['lugarDestino'].invalid && viajesForm.controls['lugarDestino'].touched">
+      <div class="alert alert-danger">El lugar de destino es requerido</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="horaSalidaEstimada">Hora de salida estimada</label>
+    <input type="text" formControlName="horaSalidaEstimada">
+    <div *ngIf="viajesForm.controls['horaSalidaEstimada'].invalid && viajesForm.controls['horaSalidaEstimada'].touched">
+      <div class="alert alert-danger">La hora de salida estimada es requerida</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="horaLlegadaEstimada">Hora de llegada estimada</label>
+    <input type="text" formControlName="horaLlegadaEstimada">
+    <div *ngIf="viajesForm.controls['horaLlegadaEstimada'].invalid && viajesForm.controls['horaLlegadaEstimada'].touched">
+      <div class="alert alert-danger">La hora de llegada estimada es requerida</div>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="viajesForm.invalid">Guardar</button>
+
+</form>
+
+<a routerLink="/viajes">Volver al listado</a>

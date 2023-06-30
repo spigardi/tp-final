@@ -1,16 +1,13 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 interface Colectivo {
   id: number;
   patente: string;
   cantidadAsientos: number | null;
-  modelo: ModeloColectivo;
-}
-
-interface ModeloColectivo {
-  nombre: string;
+  modelo: string;
   marca: string;
 }
 
@@ -25,16 +22,17 @@ export class ColectivosComponent {
     id : 0,
     patente: '',
     cantidadAsientos: null,
-    modelo: {
-      nombre: '',
-      marca: ''
-    }
+    modelo: '',
+    marca: ''
   };
   dataSource: MatTableDataSource<Colectivo>;
 
   displayedColumns: string[] = ['patente', 'cantidadAsientos', 'modeloNombre', 'modeloMarca'];
 
-  constructor(private http: HttpClient) {
+  constructor(private route: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router)
+     {
     this.dataSource = new MatTableDataSource<Colectivo>([]);
     this.colectivos.subscribe(data => {
       this.dataSource.data = data;
@@ -42,38 +40,24 @@ export class ColectivosComponent {
 
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.http.get('assets/colectivos.json').subscribe((data: any) => {
       console.log(data); // Aquí tienes acceso a los datos del archivo JSON
       this.colectivos=data;
     });
   }
 
-  crearColectivo() {
-    const colectivo: Colectivo = {
-      id : this.colectivos.getValue().length + 1 ,
-      patente: this.nuevoColectivo.patente,
-      cantidadAsientos: this.nuevoColectivo.cantidadAsientos,
-      modelo: {
-        nombre: this.nuevoColectivo.modelo.nombre,
-        marca: this.nuevoColectivo.modelo.marca
+  borrarColectivo(id:string): void {
+    /*
+    this.http.delete('assets/colectivos.json' + this.colectivo.id).subscribe(
+      (response: any) => {
+        console.log('El colectivo se eliminó exitosamente.');
+        alert('El colectivo se eliminó exitosamente.');
+        this.router.navigate(['/colectivos']);
+      },
+      (error: any) => {
+        console.log('Ocurrió un error al eliminar el colectivo.');
       }
-    };
-    const colectivosActuales = this.colectivos.getValue();
-    colectivosActuales.push(colectivo);
-    this.colectivos.next(colectivosActuales);
-    this.reiniciarNuevoColectivo();
-  }
-
-  reiniciarNuevoColectivo() {
-    this.nuevoColectivo = {
-      id: 0 ,
-      patente: '',
-      cantidadAsientos: null,
-      modelo: {
-        nombre: '',
-        marca: ''
-      }
-    };
+    );*/
   }
 }

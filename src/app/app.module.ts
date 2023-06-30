@@ -16,6 +16,7 @@ import { PersonDetailComponent } from './person-detail/person-detail.component';
 import { ColectivosDetailComponent } from './colectivos-detail/colectivos-detail.component';
 import { ViajesDetailComponent } from './viajes-detail/viajes-detail.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MatTableModule,
     HttpClientModule,
+    MatIconModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -31,7 +31,6 @@ export class PersonasComponent {
   };
 
   constructor(private changeDetectorRef: ChangeDetectorRef,private http: HttpClient) {
-    // ...
   }
 
   ngOnInit() {
@@ -42,7 +41,7 @@ export class PersonasComponent {
   }
 
   
-
+/*
   agregarPersona() {
 
     const persona: Persona = {
@@ -62,5 +61,9 @@ export class PersonasComponent {
     this.nuevaPersona.edad =null;
 
     console.log(this.personas)
+  }*/
+
+  borrarPersona(id:number):void{
+    console.log("borrar persona"+id)
   }
 }

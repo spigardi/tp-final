@@ -1,35 +1,6 @@
+<a routerLink="/viajes/agregar">nuevo</a>
+
 <h2>Viajes</h2>
-
-<h3>Agregar Viaje</h3>
-<div>
-  <label>Origen:</label>
-  <input type="text" [(ngModel)]="nuevoViaje.origen">
-  <br>
-  <label>Destino:</label>
-  <input type="text" [(ngModel)]="nuevoViaje.destino">
-  <br>
-  <label>Fecha:</label>
-  <input type="text" [(ngModel)]="nuevoViaje.fecha">
-  <br>
-  <label>Hora:</label>
-  <input type="text" [(ngModel)]="nuevoViaje.hora">
-  <br>
-  <label>Lugar de Salida:</label>
-  <input type="text" [(ngModel)]="nuevoViaje.lugarSalida">
-  <br>
-  <label>Lugar de Destino:</label>
-  <input type="text" [(ngModel)]="nuevoViaje.lugarDestino">
-  <br>
-  <label>Hora de Salida Estimada:</label>
-  <input type="text" [(ngModel)]="nuevoViaje.horaSalidaEstimada">
-  <br>
-  <label>Hora de Llegada Estimada:</label>
-  <input type="text" [(ngModel)]="nuevoViaje.horaLlegadaEstimada">
-  <br>
-  <button (click)="agregarViaje()">Agregar Viaje</button>
-</div>
-
-<br>
 
 <table mat-table [dataSource]="viajes" class="mat-elevation-z8">
   <ng-container matColumnDef="id">
