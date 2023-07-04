@@ -8,7 +8,8 @@
     "lugarSalida": "Terminal C",
     "lugarDestino": "Terminal D",
     "horaSalidaEstimada": "12:00",
-    "horaLlegadaEstimada": "15:00"
+    "horaLlegadaEstimada": "15:00",
+    "colectivo": "JKL012"
   },
   {
     "id": 3,
@@ -19,7 +20,8 @@
     "lugarSalida": "Terminal E",
     "lugarDestino": "Terminal F",
     "horaSalidaEstimada": "14:00",
-    "horaLlegadaEstimada": "18:00"
+    "horaLlegadaEstimada": "18:00",
+    "colectivo": "JKL012"
   },
   {
     "id": 4,
@@ -30,7 +32,8 @@
     "lugarSalida": "Terminal G",
     "lugarDestino": "Terminal H",
     "horaSalidaEstimada": "16:00",
-    "horaLlegadaEstimada": "20:00"
+    "horaLlegadaEstimada": "20:00",
+    "colectivo": "JKL012"
   },
   {
     "id": 5,
@@ -41,7 +44,8 @@
     "lugarSalida": "Terminal I",
     "lugarDestino": "Terminal J",
     "horaSalidaEstimada": "18:00",
-    "horaLlegadaEstimada": "22:00"
+    "horaLlegadaEstimada": "22:00",
+    "colectivo": "JKL012"
   },
   {
     "id": 6,
@@ -52,7 +56,8 @@
     "lugarSalida": "Terminal K",
     "lugarDestino": "Terminal L",
     "horaSalidaEstimada": "20:00",
-    "horaLlegadaEstimada": "00:00"
+    "horaLlegadaEstimada": "00:00",
+    "colectivo": "MNO345"
   },
   {
     "id": 7,
@@ -63,7 +68,8 @@
     "lugarSalida": "Terminal M",
     "lugarDestino": "Terminal N",
     "horaSalidaEstimada": "10:00",
-    "horaLlegadaEstimada": "14:00"
+    "horaLlegadaEstimada": "14:00",
+    "colectivo": "JKL012"
   },
   {
     "id": 8,
@@ -74,7 +80,8 @@
     "lugarSalida": "Terminal O",
     "lugarDestino": "Terminal P",
     "horaSalidaEstimada": "12:00",
-    "horaLlegadaEstimada": "16:00"
+    "horaLlegadaEstimada": "16:00",
+    "colectivo": "JKL012"
   },
   {
     "id": 9,
@@ -85,7 +92,8 @@
     "lugarSalida": "Terminal Q",
     "lugarDestino": "Terminal R",
     "horaSalidaEstimada": "14:00",
-    "horaLlegadaEstimada": "18:00"
+    "horaLlegadaEstimada": "18:00",
+    "colectivo": "JKL012"
   },
   {
     "id": 10,
@@ -96,7 +104,8 @@
     "lugarSalida": "Terminal S",
     "lugarDestino": "Terminal T",
     "horaSalidaEstimada": "16:00",
-    "horaLlegadaEstimada": "20:00"
+    "horaLlegadaEstimada": "20:00",
+    "colectivo": "JKL012"
   },
   {
     "id": 11,
@@ -107,7 +116,8 @@
     "lugarSalida": "Terminal U",
     "lugarDestino": "Terminal V",
     "horaSalidaEstimada": "18:00",
-    "horaLlegadaEstimada": "22:00"
+    "horaLlegadaEstimada": "22:00",
+    "colectivo": "JKL012"
   },
   {
     "id": 12,
@@ -118,7 +128,8 @@
     "lugarSalida": "Terminal W",
     "lugarDestino": "Terminal X",
     "horaSalidaEstimada": "20:00",
-    "horaLlegadaEstimada": "00:00"
+    "horaLlegadaEstimada": "00:00",
+    "colectivo": "JKL012"
   },
   {
     "id": 13,
@@ -129,7 +140,8 @@
     "lugarSalida": "Terminal Y",
     "lugarDestino": "Terminal Z",
     "horaSalidaEstimada": "10:00",
-    "horaLlegadaEstimada": "14:00"
+    "horaLlegadaEstimada": "14:00",
+    "colectivo": "JKL012"
   },
   {
     "id": 15,
@@ -140,6 +152,19 @@
     "lugarSalida": "Terminal B",
     "lugarDestino": "Terminal D",
     "horaSalidaEstimada": "14:00",
-    "horaLlegadaEstimada": "18:00"
+    "horaLlegadaEstimada": "18:00",
+    "colectivo": "JKL012"
+  },
+  {
+    "origen": "dfsf",
+    "destino": "dsfsdf",
+    "fecha": "2023-07-06T03:00:00.000Z",
+    "hora": "12:00",
+    "lugarSalida": "dssad",
+    "lugarDestino": "sdfsdf",
+    "horaSalidaEstimada": "12:00",
+    "horaLlegadaEstimada": "15:00",
+    "colectivo": "GHI789",
+    "id": 17
   }
 ]

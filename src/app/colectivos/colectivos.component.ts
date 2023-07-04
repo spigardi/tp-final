@@ -3,15 +3,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Colectivo } from 'src/interfaces/colectivo.interface';
 import Swal from 'sweetalert2';
 
-interface Colectivo {
-  id: number;
-  patente: string;
-  cantidadAsientos: number | null;
-  modelo: string;
-  marca: string;
-}
 
 @Component({
   selector: 'app-colectivos',

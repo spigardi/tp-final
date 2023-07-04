@@ -4,14 +4,9 @@ import { BehaviorSubject } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import { HttpClient } from '@angular/common/http';
+import { Persona } from 'src/interfaces/persona.interface';
 import Swal from 'sweetalert2';
 
-interface Persona {
-  id : number;
-  nombre: string;
-  apellido: string;
-  edad: number|null;
-}
 
 @Component({
   selector: 'app-personas',

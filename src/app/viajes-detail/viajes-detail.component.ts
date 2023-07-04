@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { BehaviorSubject } from 'rxjs';
+import { Colectivo } from 'src/interfaces/colectivo.interface';
 import Swal from 'sweetalert2';
 
 
@@ -14,6 +16,7 @@ import Swal from 'sweetalert2';
 export class ViajesDetailComponent implements OnInit {
   viajesForm!: FormGroup;
   viaje: any;
+  colectivosList: Colectivo[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,6 +26,7 @@ export class ViajesDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loadColectivos();
     this.viajesForm = this.formBuilder.group({
       origen: ['', Validators.required],
       destino: ['', Validators.required],
@@ -31,7 +35,8 @@ export class ViajesDetailComponent implements OnInit {
       lugarSalida: ['', Validators.required],
       lugarDestino: ['', Validators.required],
       horaSalidaEstimada: ['', Validators.required],
-      horaLlegadaEstimada: ['', Validators.required]
+      horaLlegadaEstimada: ['', Validators.required],
+      colectivo: ['', Validators.required]
     });
 
     // Obtener el ID del viaje de la URL
@@ -68,11 +73,18 @@ export class ViajesDetailComponent implements OnInit {
           lugarSalida: viaje.lugarSalida,
           lugarDestino: viaje.lugarDestino,
           horaSalidaEstimada: viaje.horaSalidaEstimada,
-          horaLlegadaEstimada: viaje.horaLlegadaEstimada
+          horaLlegadaEstimada: viaje.horaLlegadaEstimada,
+          colectivo: viaje.colectivo
         });
       } else {
         console.log("No se encontró el viaje");
       }
+    });
+  }
+
+  loadColectivos(): void {
+    this.http.get('assets/colectivos.json').subscribe((data: any) => {
+      this.colectivosList = data.map((el:any) => el.patente)
     });
   }
 

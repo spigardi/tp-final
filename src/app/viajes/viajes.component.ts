@@ -2,19 +2,8 @@ import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Viaje } from 'src/interfaces/viaje.interface';
 import Swal from 'sweetalert2';
-
-interface Viaje {
-  id: number;
-  origen: string;
-  destino: string;
-  fecha: string;
-  hora: string;
-  lugarSalida: string;
-  lugarDestino: string;
-  horaSalidaEstimada: string;
-  horaLlegadaEstimada: string;
-}
 
 @Component({
   selector: 'app-viajes',
@@ -23,21 +12,10 @@ interface Viaje {
 })
 export class ViajesComponent {
   viajes: BehaviorSubject<Viaje[]> = new BehaviorSubject<Viaje[]>([]);
-  nuevoViaje: Viaje = {
-    id:0,
-    origen: '',
-    destino: '',
-    fecha: '',
-    hora: '',
-    lugarSalida: '',
-    lugarDestino: '',
-    horaSalidaEstimada: '',
-    horaLlegadaEstimada: ''
-  };
 
   dataSource: MatTableDataSource<Viaje>;
 
-  displayedColumns: string[] = ['id', 'origen', 'destino', 'fecha','hora','lugarSalida','lugarDestino','horaSalidaEstimada','horaLlegadaEstimada'];
+  displayedColumns: string[] = ['id', 'origen', 'destino', 'fecha','hora','lugarSalida','lugarDestino','horaSalidaEstimada','horaLlegadaEstimada','colectivo'];
 
   constructor(private http: HttpClient) {
     this.dataSource = new MatTableDataSource<Viaje>([]);

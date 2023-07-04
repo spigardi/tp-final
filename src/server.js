@@ -126,7 +126,7 @@ function eliminarPersona(req,res) {
       }
 
       // Guardar los cambios en el archivo personas.json
-      fs.writeFile('assets/personas.json', JSON.stringify(personas), 'utf8', (err) => {
+      fs.writeFile('assets/personas.json', JSON.stringify(personas, null, 2), 'utf8', (err) => {
         if (err) {
           console.error(err);
           res.status(500).send('Error interno del servidor');
@@ -245,7 +245,7 @@ function eliminarColectivo(req,res) {
       }
 
       // Guardar los cambios en el archivo colectivos.json
-      fs.writeFile('assets/colectivos.json', JSON.stringify(colectivos), 'utf8', (err) => {
+      fs.writeFile('assets/colectivos.json', JSON.stringify(colectivos, null, 2), 'utf8', (err) => {
         if (err) {
           console.error(err);
           res.status(500).send('Error interno del servidor');
@@ -264,7 +264,6 @@ function eliminarColectivo(req,res) {
 
 function agregarViaje(req, res) {
   const nuevoViaje = req.body;
-
   // Leer el archivo viajes.json
   fs.readFile('assets/viajes.json', 'utf8', (err, data) => {
     if (err) {
@@ -281,6 +280,7 @@ function agregarViaje(req, res) {
 
     // Agregar la nueva viaje al array
     viajes.push(nuevoViaje);
+    
     
     // Escribir el array actualizado de viajes en el archivo viajes.json
     fs.writeFile('assets/viajes.json', JSON.stringify(viajes, null, 2), 'utf8', (err) => {
@@ -363,7 +363,7 @@ function eliminarViaje(req,res) {
       }
 
       // Guardar los cambios en el archivo viajes.json
-      fs.writeFile('assets/viajes.json', JSON.stringify(viajes), 'utf8', (err) => {
+      fs.writeFile('assets/viajes.json', JSON.stringify(viajes, null, 2), 'utf8', (err) => {
         if (err) {
           console.error(err);
           res.status(500).send('Error interno del servidor');
@@ -379,3 +379,26 @@ function eliminarViaje(req,res) {
     }
   });
 }
+/*
+function obtenerColectivo(patente){
+    // Leer el archivo colectivos.json
+  fs.readFile('assets/colectivos.json', 'utf8', (err, data) => {
+    if (err) {
+        console.error(err);
+        res.sendStatus(500);
+        return;
+    }
+    // Parsear el contenido del archivo a un array de colectivos
+    const colectivos = JSON.parse(data);
+
+    const colectivoIndex = colectivos.findIndex((colectivo) => colectivo.patente === patente);
+
+    if (colectivoIndex === -1) {
+    res.status(404).json({ error: 'colectivo no encontrado' });
+    return;
+    }
+
+    // Obtener el colectivo encontrado
+    return colectivos[colectivoIndex];
+});
+}*/

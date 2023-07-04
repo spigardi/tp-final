@@ -16,8 +16,6 @@ export class PersonDetailComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,private http:HttpClient,private route: ActivatedRoute,
     private location: Location) { }
 
-  
-
   ngOnInit(): void {
     this.personForm = this.formBuilder.group({
       nombre: ['', Validators.required],
