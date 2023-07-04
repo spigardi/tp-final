@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-colectivos-detail',
@@ -82,7 +83,12 @@ export class ColectivosDetailComponent implements OnInit {
       response => {
         if (response.status === 200) {
           console.log('El colectivo se guardó exitosamente.');
-          alert('El colectivo se guardó exitosamente.');
+          Swal.fire({
+            title: '¡Éxito!',
+            text: 'El colectivo se guardó exitosamente.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          });
           this.reiniciarForm();
         } else {
           console.log('Ocurrió un error al guardar el colectivo.');
@@ -99,7 +105,12 @@ export class ColectivosDetailComponent implements OnInit {
       response => {
         if (response.status === 200) {
           console.log('El colectivo se editó exitosamente.');
-          alert('El colectivo se editó exitosamente.');
+          Swal.fire({
+            title: '¡Éxito!',
+            text: 'El colectivo se editó exitosamente.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          });
         } else {
           console.log('Ocurrió un error al editar el colectivo.');
         }

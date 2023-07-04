@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 interface Persona {
   id : number;
@@ -34,36 +35,49 @@ export class PersonasComponent {
   }
 
   ngOnInit() {
+    this.loadTable()
+  }
+
+
+  borrarPersona(id:number):void{
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Deseas eliminar esta persona?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.http.delete('http://localhost:3000/api/personas/eliminar/' + id,  { observe: 'response' }).subscribe(
+          response => {
+            if (response.status === 200) {
+              console.log('La persona se eliminó exitosamente.');
+              Swal.fire({
+                title: '¡Éxito!',
+                text: 'La persona se eliminó exitosamente.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+              });
+              this.loadTable();
+            } else {
+              console.log('Ocurrió un error al eliminar la persona.');
+            }
+          },
+          error => {
+            console.log('Ocurrió un error en la solicitud HTTP.');
+          }
+        );
+      } else {
+        console.log("cancelado");
+      }
+    });
+  }
+
+  loadTable(){
     this.http.get('assets/personas.json').subscribe((data: any) => {
       console.log(data); // Aquí tienes acceso a los datos del archivo JSON
       this.personas = data;
     });
-  }
-
-  
-/*
-  agregarPersona() {
-
-    const persona: Persona = {
-      id :  this.personas.getValue().length + 1,
-      nombre: this.nuevaPersona.nombre,
-      apellido: this.nuevaPersona.apellido,
-      edad: this.nuevaPersona.edad,
-      
-    };
-    const personasActuales = this.personas.getValue();
-    personasActuales.push(persona);
-    this.personas.next(personasActuales);
-
-    this.changeDetectorRef.detectChanges();
-    this.nuevaPersona.nombre = "";
-    this.nuevaPersona.apellido ="";     
-    this.nuevaPersona.edad =null;
-
-    console.log(this.personas)
-  }*/
-
-  borrarPersona(id:number):void{
-    console.log("borrar persona"+id)
   }
 }

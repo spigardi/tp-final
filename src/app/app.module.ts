@@ -17,6 +17,9 @@ import { ColectivosDetailComponent } from './colectivos-detail/colectivos-detail
 import { ViajesDetailComponent } from './viajes-detail/viajes-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,9 @@ import { MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     MatTableModule,
     HttpClientModule,
-    MatIconModule    
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

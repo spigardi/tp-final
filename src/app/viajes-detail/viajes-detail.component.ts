@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-viajes-detail',
@@ -56,7 +58,6 @@ export class ViajesDetailComponent implements OnInit {
   loadViajeData(id: string): void {
     this.http.get('assets/viajes.json').subscribe((data: any) => {
       const viaje = data.find((res: any) => res.id == parseInt(id));
-
       if (viaje) {
         // Establecer los valores de los controles del formulario con los datos del viaje
         this.viajesForm.patchValue({
@@ -85,7 +86,12 @@ export class ViajesDetailComponent implements OnInit {
       response => {
         if (response.status === 200) {
           console.log('El viaje se guardó exitosamente.');
-          alert('El viaje se guardó exitosamente.');
+          Swal.fire({
+            title: '¡Éxito!',
+            text: 'El viaje se guardó exitosamente.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          });
           this.reiniciarForm();
         } else {
           console.log('Ocurrió un error al guardar el viaje.');
@@ -98,11 +104,16 @@ export class ViajesDetailComponent implements OnInit {
   }
 
   editarViaje(id: string): void {
-    this.http.put('http://localhost:3000/api/viaje/editar/' + id, this.viajesForm.value, { observe: 'response' }).subscribe(
+    this.http.put('http://localhost:3000/api/viajes/editar/' + id, this.viajesForm.value, { observe: 'response' }).subscribe(
       response => {
         if (response.status === 200) {
           console.log('El viaje se editó exitosamente.');
-          alert('El viaje se editó exitosamente.');
+          Swal.fire({
+            title: '¡Éxito!',
+            text: 'El viaje se editó exitosamente.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          });
         } else {
           console.log('Ocurrió un error al editar el viaje.');
         }

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { BehaviorSubject } from 'rxjs';
-
+import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 interface Viaje {
   id: number;
@@ -38,47 +39,64 @@ export class ViajesComponent {
 
   displayedColumns: string[] = ['id', 'origen', 'destino', 'fecha','hora','lugarSalida','lugarDestino','horaSalidaEstimada','horaLlegadaEstimada'];
 
-  constructor() {
-    this.dataSource = new MatTableDataSource(this.viajes.getValue());
+  constructor(private http: HttpClient) {
+    this.dataSource = new MatTableDataSource<Viaje>([]);
     this.viajes.subscribe(data => {
       this.dataSource.data = data;
     });
   }
 
-  agregarViaje() {  // Cambio de nombre: crearViaje() -> agregarViaje()
-    const viaje: Viaje = {
-      id:0,
-      origen: this.nuevoViaje.origen,
-      destino: this.nuevoViaje.destino,
-      fecha: this.nuevoViaje.fecha,
-      hora: this.nuevoViaje.hora,
-      lugarSalida: this.nuevoViaje.lugarSalida,
-      lugarDestino: this.nuevoViaje.lugarDestino,
-      horaSalidaEstimada: this.nuevoViaje.horaSalidaEstimada,
-      horaLlegadaEstimada: this.nuevoViaje.horaLlegadaEstimada
-    };
-
-    const viajesActuales = this.viajes.getValue();
-    viajesActuales.push(viaje);
-    this.viajes.next(viajesActuales);
-    this.dataSource.data = this.viajes.getValue();
-    this.reiniciarNuevoViaje();
-
-   
+  ngOnInit() {
+    this.loadTable();
   }
 
-  reiniciarNuevoViaje() {
-    this.nuevoViaje = {
-      id: 0,
-      origen: '',
-      destino: '',
-      fecha:"",
-      hora:"",
-      lugarSalida:"",
-      lugarDestino:"",
-      horaSalidaEstimada:"",
-      horaLlegadaEstimada:"",
-      
-    };
+  borrarViaje(id:string): void {
+
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Deseas eliminar este viaje?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.http.delete('http://localhost:3000/api/viajes/eliminar/' + id,  { observe: 'response' }).subscribe(
+          response => {
+            if (response.status === 200) {
+              console.log('El viaje se eliminó exitosamente.');
+              Swal.fire({
+                title: '¡Éxito!',
+                text: 'El viaje se eliminó exitosamente.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+              });
+              this.loadTable();
+            } else {
+              console.log('Ocurrió un error al eliminar el viaje.');
+            }
+          },
+          error => {
+            console.log('Ocurrió un error en la solicitud HTTP.');
+          }
+        );
+      } else {
+        console.log("cancelado");
+      }
+    });
+    
+  }
+
+  loadTable(){
+    this.http.get('assets/viajes.json').subscribe((data: any) => {
+      console.log(data); // Aquí tienes acceso a los datos del archivo JSON
+      this.viajes = data;
+      this.viajes = data.map((viaje: any) => {
+        return {
+          ...viaje,
+          fecha: new Date(viaje.fecha).toISOString().substring(0, 10)
+        };
+      });
+    });
   }
 }

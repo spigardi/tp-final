@@ -12,10 +12,13 @@ app.use(bodyParser.json());
 
 app.post('/api/personas/agregar', agregarPersona);
 app.put('/api/personas/editar/:id', editarPersona);
+app.delete('/api/personas/eliminar/:id', eliminarPersona);
 app.post('/api/colectivos/agregar', agregarColectivo);
 app.put('/api/colectivos/editar/:id', editarColectivo);
+app.delete('/api/colectivos/eliminar/:id', eliminarColectivo);
 app.post('/api/viajes/agregar', agregarViaje);
 app.put('/api/viajes/editar/:id', editarViaje);
+app.delete('/api/viajes/eliminar/:id', eliminarViaje);
 
 app.listen(port, () => {
   console.log(`Servidor en funcionamiento en http://localhost:${port}`);
@@ -98,6 +101,47 @@ function editarPersona(req, res) {
   });
 }
 
+function eliminarPersona(req,res) {
+  const id = req.params.id;
+
+  // Leer el archivo personas.json
+  fs.readFile('assets/personas.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error interno del servidor');
+      return;
+    }
+
+    try {
+      // Parsear el contenido del archivo JSON
+      const personas = JSON.parse(data);
+
+      // Encontrar y eliminar el persona con el ID especificado
+      const index = personas.findIndex((persona) => persona.id === parseInt(id));
+      if (index !== -1) {
+        personas.splice(index, 1);
+      } else {
+        res.status(404).send('persona no encontrado');
+        return;
+      }
+
+      // Guardar los cambios en el archivo personas.json
+      fs.writeFile('assets/personas.json', JSON.stringify(personas), 'utf8', (err) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send('Error interno del servidor');
+          return;
+        }
+
+        //res.send('persona eliminado exitosamente');
+        res.status(200).json({ message: 'persona eliminado exitosamente' });
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error interno del servidor');
+    }
+  });
+}
 
 function agregarColectivo(req, res) {
   const nuevoColectivo = req.body;
@@ -176,9 +220,50 @@ function editarColectivo(req, res) {
   });
 }
 
+function eliminarColectivo(req,res) {
+  const id = req.params.id;
+
+  // Leer el archivo colectivos.json
+  fs.readFile('assets/colectivos.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error interno del servidor');
+      return;
+    }
+
+    try {
+      // Parsear el contenido del archivo JSON
+      const colectivos = JSON.parse(data);
+
+      // Encontrar y eliminar el colectivo con el ID especificado
+      const index = colectivos.findIndex((colectivo) => colectivo.id === parseInt(id));
+      if (index !== -1) {
+        colectivos.splice(index, 1);
+      } else {
+        res.status(404).send('colectivo no encontrado');
+        return;
+      }
+
+      // Guardar los cambios en el archivo colectivos.json
+      fs.writeFile('assets/colectivos.json', JSON.stringify(colectivos), 'utf8', (err) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send('Error interno del servidor');
+          return;
+        }
+
+        //res.send('colectivo eliminado exitosamente');
+        res.status(200).json({ message: 'colectivo eliminado exitosamente' });
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error interno del servidor');
+    }
+  });
+}
 
 function agregarViaje(req, res) {
-  const nuevaviaje = req.body;
+  const nuevoViaje = req.body;
 
   // Leer el archivo viajes.json
   fs.readFile('assets/viajes.json', 'utf8', (err, data) => {
@@ -192,10 +277,10 @@ function agregarViaje(req, res) {
     const viajes = JSON.parse(data);
 
     // Asignar un nuevo ID a la viaje
-    nuevaviaje.id = viajes.length + 1;
+    nuevoViaje.id = viajes.length + 1;
 
     // Agregar la nueva viaje al array
-    viajes.push(nuevoviaje);
+    viajes.push(nuevoViaje);
     
     // Escribir el array actualizado de viajes en el archivo viajes.json
     fs.writeFile('assets/viajes.json', JSON.stringify(viajes, null, 2), 'utf8', (err) => {
@@ -250,5 +335,47 @@ function editarViaje(req, res) {
       
           res.status(200).json({ message: 'viaje editado exitosamente' });
           });
+  });
+}
+
+function eliminarViaje(req,res) {
+  const id = req.params.id;
+
+  // Leer el archivo viajes.json
+  fs.readFile('assets/viajes.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error interno del servidor');
+      return;
+    }
+
+    try {
+      // Parsear el contenido del archivo JSON
+      const viajes = JSON.parse(data);
+
+      // Encontrar y eliminar el viaje con el ID especificado
+      const index = viajes.findIndex((viaje) => viaje.id === parseInt(id));
+      if (index !== -1) {
+        viajes.splice(index, 1);
+      } else {
+        res.status(404).send('Viaje no encontrado');
+        return;
+      }
+
+      // Guardar los cambios en el archivo viajes.json
+      fs.writeFile('assets/viajes.json', JSON.stringify(viajes), 'utf8', (err) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send('Error interno del servidor');
+          return;
+        }
+
+        //res.send('Viaje eliminado exitosamente');
+        res.status(200).json({ message: 'Viaje eliminado exitosamente' });
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error interno del servidor');
+    }
   });
 }

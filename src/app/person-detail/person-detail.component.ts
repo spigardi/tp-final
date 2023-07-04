@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-person-detail',
   templateUrl: './person-detail.component.html',
@@ -77,7 +79,12 @@ export class PersonDetailComponent implements OnInit {
       response => {
         if (response.status === 200) {
           console.log('La persona se guardó exitosamente.');
-          alert('La persona se guardó exitosamente.');
+          Swal.fire({
+            title: '¡Éxito!',
+            text: 'La persona se guardó exitosamente.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          });
           this.reiniciarForm();
         } else {
           console.log('Ocurrió un error al guardar la persona.');
@@ -94,7 +101,12 @@ export class PersonDetailComponent implements OnInit {
       response => {
         if (response.status === 200) {
           console.log('La persona se editó exitosamente.');
-          alert('La persona se editó exitosamente.');
+          Swal.fire({
+            title: '¡Éxito!',
+            text: 'La persona se editó exitosamente.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          });
         } else {
           console.log('Ocurrió un error al editar la persona.');
         }
