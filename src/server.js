@@ -19,6 +19,8 @@ app.delete('/api/colectivos/eliminar/:id', eliminarColectivo);
 app.post('/api/viajes/agregar', agregarViaje);
 app.put('/api/viajes/editar/:id', editarViaje);
 app.delete('/api/viajes/eliminar/:id', eliminarViaje);
+app.post('/api/viajes/pasajeros/agregar/:viajeId/:personId', agregarPasajero);
+app.delete('/api/viajes/pasajeros/eliminar/:viajeId/:personId', eliminarPasajero);
 
 app.listen(port, () => {
   console.log(`Servidor en funcionamiento en http://localhost:${port}`);
@@ -40,7 +42,7 @@ function agregarPersona(req, res) {
     const personas = JSON.parse(data);
 
     // Asignar un nuevo ID a la persona
-    nuevaPersona.id = personas.length + 1;
+    nuevaPersona.id = personas[personas.applength-1].id + 1;
 
     // Agregar la nueva persona al array
     personas.push(nuevaPersona);
@@ -158,7 +160,7 @@ function agregarColectivo(req, res) {
     const colectivos = JSON.parse(data);
 
     // Asignar un nuevo ID a la colectivo
-    nuevoColectivo.id = colectivos.length + 1;
+    nuevoColectivo.id = colectivos[colectivos.length-1].id + 1;
 
     // Agregar la nueva colectivo al array
     colectivos.push(nuevoColectivo);
@@ -276,7 +278,8 @@ function agregarViaje(req, res) {
     const viajes = JSON.parse(data);
 
     // Asignar un nuevo ID a la viaje
-    nuevoViaje.id = viajes.length + 1;
+    nuevoViaje.id = viajes[viajes.length-1].id + 1;
+    nuevoViaje.pasajeros = [];
 
     // Agregar la nueva viaje al array
     viajes.push(nuevoViaje);
@@ -379,6 +382,130 @@ function eliminarViaje(req,res) {
     }
   });
 }
+
+function agregarPasajero(req,res) {
+
+  const viajeId = req.params.viajeId;
+  const personId = req.params.personId;
+
+  // Leer el archivo viajes.json
+  fs.readFile('assets/viajes.json', 'utf8', (err, data) => {
+      if (err) {
+          console.error(err);
+          res.sendStatus(500);
+          return;
+      }
+  
+      // Parsear el contenido del archivo a un array de viajes
+      let viajes = JSON.parse(data);
+  
+      //Obtener el index del viaje
+      const viajeIndex = viajes.findIndex((viaje) => viaje.id === parseInt(viajeId));
+
+      if (viajeIndex === -1) {
+      res.status(404).json({ error: 'viaje no encontrado' });
+      return;
+      }
+
+      // Obtener el viaje encontrado
+      let viajeExistente = viajes[viajeIndex];
+
+      //obtener la lista de personas
+      fs.readFile('assets/personas.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            res.sendStatus(500);
+            return;
+        }
+    
+        // Parsear el contenido del archivo a un array de personas
+        const personas = JSON.parse(data);
+
+        const personaIndex = personas.findIndex((persona) => persona.id === parseInt(personId));
+  
+        if (personaIndex === -1) {
+        res.status(404).json({ error: 'Persona no encontrada' });
+        return;
+        }
+  
+        // Obtener la persona encontrada
+        const personaExistente = personas[personaIndex];
+        // Agregarla al listado de pasajeros del viaje a editar
+        viajeExistente.pasajeros.push(personaExistente);
+        //reemplazo en la lista
+        viajes[viajeIndex] = viajeExistente;
+
+      
+        // Escribir el array actualizado de viajes en el archivo viajes.json
+        fs.writeFile('assets/viajes.json', JSON.stringify(viajes, null, 2), 'utf8', (err) => {
+            if (err) {
+                console.error(err);
+                res.status(500).json({ error: 'Error al escribir en el archivo de viajes' });
+                return;
+            }
+        
+            res.status(200).json({ message: 'viaje editado exitosamente', pasajero: personaExistente });
+            });
+    });
+  });
+
+
+}
+
+function eliminarPasajero(req,res) {
+
+  const viajeId = req.params.viajeId;
+  const personId = req.params.personId;
+
+  // Leer el archivo viajes.json
+  fs.readFile('assets/viajes.json', 'utf8', (err, data) => {
+      if (err) {
+          console.error(err);
+          res.sendStatus(500);
+          return;
+      }
+  
+      // Parsear el contenido del archivo a un array de viajes
+      let viajes = JSON.parse(data);
+  
+      //Obtener el index del viaje
+      const viajeIndex = viajes.findIndex((viaje) => viaje.id === parseInt(viajeId));
+
+      if (viajeIndex === -1) {
+      res.status(404).json({ error: 'viaje no encontrado' });
+      return;
+      }
+
+      // Obtener el viaje encontrado
+      let viajeExistente = viajes[viajeIndex];
+
+      //buscar en los pasajeros de ese viaje el id de la persona a eliminar
+      const personaIndex = viajeExistente.pasajeros.findIndex((persona) => persona.id === parseInt(personId));
+      if (personaIndex !== -1) {
+        viajeExistente.pasajeros.splice(personaIndex, 1);
+      } else {
+        res.status(404).send('Viaje no encontrado');
+        return;
+      }
+      //reemplazo en la lista
+      viajes[viajeIndex] = viajeExistente;
+
+
+      // Escribir el array actualizado de viajes en el archivo viajes.json
+      fs.writeFile('assets/viajes.json', JSON.stringify(viajes, null, 2), 'utf8', (err) => {
+          if (err) {
+              console.error(err);
+              res.status(500).json({ error: 'Error al escribir en el archivo de viajes' });
+              return;
+          }
+      
+          res.status(200).json({ message: 'viaje editado exitosamente' });
+          });
+      
+  });
+}
+
+
 /*
 function obtenerColectivo(patente){
     // Leer el archivo colectivos.json

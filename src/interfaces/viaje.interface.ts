@@ -1,4 +1,4 @@
-import { Colectivo } from "./colectivo.interface";
+import { Persona } from "./persona.interface";
 
 export interface Viaje {
     id: number;
@@ -10,5 +10,6 @@ export interface Viaje {
     lugarDestino: string;
     horaSalidaEstimada: string;
     horaLlegadaEstimada: string;
-    colectivo: string
+    colectivo: string;
+    pasajeros:Persona[];
   }

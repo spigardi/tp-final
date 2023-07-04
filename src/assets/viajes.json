@@ -9,7 +9,33 @@
     "lugarDestino": "Terminal D",
     "horaSalidaEstimada": "12:00",
     "horaLlegadaEstimada": "15:00",
-    "colectivo": "JKL012"
+    "colectivo": "JKL012",
+    "pasajeros": [
+      {
+        "id": 4,
+        "nombre": "Ana",
+        "apellido": "Martínez",
+        "edad": 28
+      },
+      {
+        "id": 5,
+        "nombre": "Pedro",
+        "apellido": "Rodríguez",
+        "edad": 35
+      },
+      {
+        "id": 6,
+        "nombre": "Laura",
+        "apellido": "Hernández",
+        "edad": 31
+      },
+      {
+        "id": 3,
+        "nombre": "Carlos",
+        "apellido": "López",
+        "edad": 42
+      }
+    ]
   },
   {
     "id": 3,
@@ -21,7 +47,21 @@
     "lugarDestino": "Terminal F",
     "horaSalidaEstimada": "14:00",
     "horaLlegadaEstimada": "18:00",
-    "colectivo": "JKL012"
+    "colectivo": "JKL012",
+    "pasajeros": [
+      {
+        "id": 1,
+        "nombre": "poi",
+        "apellido": "Perez",
+        "edad": 26
+      },
+      {
+        "id": 3,
+        "nombre": "Carlos",
+        "apellido": "López",
+        "edad": 42
+      }
+    ]
   },
   {
     "id": 4,
@@ -33,7 +73,15 @@
     "lugarDestino": "Terminal H",
     "horaSalidaEstimada": "16:00",
     "horaLlegadaEstimada": "20:00",
-    "colectivo": "JKL012"
+    "colectivo": "JKL012",
+    "pasajeros": [
+      {
+        "id": 4,
+        "nombre": "Ana",
+        "apellido": "Martínez",
+        "edad": 28
+      }
+    ]
   },
   {
     "id": 5,
@@ -45,7 +93,8 @@
     "lugarDestino": "Terminal J",
     "horaSalidaEstimada": "18:00",
     "horaLlegadaEstimada": "22:00",
-    "colectivo": "JKL012"
+    "colectivo": "JKL012",
+    "pasajeros": []
   },
   {
     "id": 6,
@@ -57,7 +106,8 @@
     "lugarDestino": "Terminal L",
     "horaSalidaEstimada": "20:00",
     "horaLlegadaEstimada": "00:00",
-    "colectivo": "MNO345"
+    "colectivo": "MNO345",
+    "pasajeros": []
   },
   {
     "id": 7,
@@ -69,7 +119,8 @@
     "lugarDestino": "Terminal N",
     "horaSalidaEstimada": "10:00",
     "horaLlegadaEstimada": "14:00",
-    "colectivo": "JKL012"
+    "colectivo": "JKL012",
+    "pasajeros": []
   },
   {
     "id": 8,
@@ -81,7 +132,8 @@
     "lugarDestino": "Terminal P",
     "horaSalidaEstimada": "12:00",
     "horaLlegadaEstimada": "16:00",
-    "colectivo": "JKL012"
+    "colectivo": "JKL012",
+    "pasajeros": []
   },
   {
     "id": 9,
@@ -93,7 +145,8 @@
     "lugarDestino": "Terminal R",
     "horaSalidaEstimada": "14:00",
     "horaLlegadaEstimada": "18:00",
-    "colectivo": "JKL012"
+    "colectivo": "JKL012",
+    "pasajeros": []
   },
   {
     "id": 10,
@@ -105,7 +158,8 @@
     "lugarDestino": "Terminal T",
     "horaSalidaEstimada": "16:00",
     "horaLlegadaEstimada": "20:00",
-    "colectivo": "JKL012"
+    "colectivo": "JKL012",
+    "pasajeros": []
   },
   {
     "id": 11,
@@ -117,7 +171,8 @@
     "lugarDestino": "Terminal V",
     "horaSalidaEstimada": "18:00",
     "horaLlegadaEstimada": "22:00",
-    "colectivo": "JKL012"
+    "colectivo": "JKL012",
+    "pasajeros": []
   },
   {
     "id": 12,
@@ -129,7 +184,8 @@
     "lugarDestino": "Terminal X",
     "horaSalidaEstimada": "20:00",
     "horaLlegadaEstimada": "00:00",
-    "colectivo": "JKL012"
+    "colectivo": "JKL012",
+    "pasajeros": []
   },
   {
     "id": 13,
@@ -141,7 +197,8 @@
     "lugarDestino": "Terminal Z",
     "horaSalidaEstimada": "10:00",
     "horaLlegadaEstimada": "14:00",
-    "colectivo": "JKL012"
+    "colectivo": "JKL012",
+    "pasajeros": []
   },
   {
     "id": 15,
@@ -153,7 +210,8 @@
     "lugarDestino": "Terminal D",
     "horaSalidaEstimada": "14:00",
     "horaLlegadaEstimada": "18:00",
-    "colectivo": "JKL012"
+    "colectivo": "JKL012",
+    "pasajeros": []
   },
   {
     "origen": "dfsf",
@@ -165,6 +223,109 @@
     "horaSalidaEstimada": "12:00",
     "horaLlegadaEstimada": "15:00",
     "colectivo": "GHI789",
-    "id": 17
+    "id": 17,
+    "pasajeros": []
+  },
+  {
+    "origen": "sdfsdfs",
+    "destino": "sdfsdfds",
+    "fecha": "2023-07-06T03:00:00.000Z",
+    "hora": "12:00",
+    "lugarSalida": "sdfsd",
+    "lugarDestino": "fsdfs",
+    "horaSalidaEstimada": "12:00",
+    "horaLlegadaEstimada": "15:00",
+    "colectivo": "DEF456",
+    "id": 18,
+    "pasajeros": [
+      {
+        "id": 4,
+        "nombre": "Ana",
+        "apellido": "Martínez",
+        "edad": 28
+      },
+      {
+        "id": 5,
+        "nombre": "Pedro",
+        "apellido": "Rodríguez",
+        "edad": 35
+      },
+      {
+        "id": 6,
+        "nombre": "Laura",
+        "apellido": "Hernández",
+        "edad": 31
+      }
+    ]
+  },
+  {
+    "origen": "Lujan",
+    "destino": "Tandil",
+    "fecha": "2023-07-13T03:00:00.000Z",
+    "hora": "12:00",
+    "lugarSalida": "Lujan",
+    "lugarDestino": "Tandil",
+    "horaSalidaEstimada": "12:00",
+    "horaLlegadaEstimada": "22:00",
+    "colectivo": "GHI789",
+    "id": 19,
+    "pasajeros": [
+      {
+        "id": 1,
+        "nombre": "poi",
+        "apellido": "Perez",
+        "edad": 26
+      },
+      {
+        "id": 4,
+        "nombre": "Ana",
+        "apellido": "Martínez",
+        "edad": 28
+      },
+      {
+        "id": 3,
+        "nombre": "Carlos",
+        "apellido": "López",
+        "edad": 42
+      },
+      {
+        "id": 5,
+        "nombre": "Pedro",
+        "apellido": "Rodríguez",
+        "edad": 35
+      }
+    ]
+  },
+  {
+    "origen": "sadasds",
+    "destino": "jhjhjhjhjhjhj",
+    "fecha": "2023-07-08T03:00:00.000Z",
+    "hora": "12:00",
+    "lugarSalida": "drfddsfs",
+    "lugarDestino": "dfsdf",
+    "horaSalidaEstimada": "12:00",
+    "horaLlegadaEstimada": "15:00",
+    "colectivo": "JKL012",
+    "id": 20,
+    "pasajeros": [
+      {
+        "id": 3,
+        "nombre": "Carlos",
+        "apellido": "López",
+        "edad": 42
+      },
+      {
+        "id": 5,
+        "nombre": "Pedro",
+        "apellido": "Rodríguez",
+        "edad": 35
+      },
+      {
+        "id": 1,
+        "nombre": "poi",
+        "apellido": "Perez",
+        "edad": 26
+      }
+    ]
   }
 ]

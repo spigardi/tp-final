@@ -21,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { PasajerosComponent } from './pasajeros/pasajeros.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { MatSelectModule } from '@angular/material/select';
     ViajesComponent,
     PersonDetailComponent,
     ColectivosDetailComponent,
-    ViajesDetailComponent
+    ViajesDetailComponent,
+    PasajerosComponent
   ],
   imports: [
     BrowserModule,

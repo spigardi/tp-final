@@ -1,0 +1,14 @@
+.popup{
+    position:fixed;
+    width:70vw;
+    height:80vh;
+    left:15vw;
+    top:10vh;
+    background:white;
+    border:1px solid black;
+}
+.close-btn{
+    position:fixed;
+    right:15vw;
+    top:11vh;
+}

@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Viaje } from 'src/interfaces/viaje.interface';
+import { Persona } from 'src/interfaces/persona.interface';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,8 +13,25 @@ import Swal from 'sweetalert2';
 })
 export class ViajesComponent {
   viajes: BehaviorSubject<Viaje[]> = new BehaviorSubject<Viaje[]>([]);
+  pasajeros: Persona[] = [];
+  showPopup: boolean = false;
+  selectedViaje : Viaje ={
+    id: 0,
+    origen: "",
+    destino: "",
+    fecha: "",
+    hora: "",
+    lugarSalida: "",
+    lugarDestino: "",
+    horaSalidaEstimada: "",
+    horaLlegadaEstimada: "",
+    colectivo: "",
+    pasajeros: this.pasajeros
+  };
+  selectedIndex : number = 0;
 
   dataSource: MatTableDataSource<Viaje>;
+  //dataSourcePasajeros: MatTableDataSource<Persona>;
 
   displayedColumns: string[] = ['id', 'origen', 'destino', 'fecha','hora','lugarSalida','lugarDestino','horaSalidaEstimada','horaLlegadaEstimada','colectivo'];
 
@@ -22,6 +40,11 @@ export class ViajesComponent {
     this.viajes.subscribe(data => {
       this.dataSource.data = data;
     });
+    /*
+    this.dataSourcePasajeros = new MatTableDataSource<Persona>([]);
+    this.pasajeros.subscribe(data => {
+      this.dataSourcePasajeros.data = data;
+    });*/
   }
 
   ngOnInit() {
@@ -68,13 +91,35 @@ export class ViajesComponent {
   loadTable(){
     this.http.get('assets/viajes.json').subscribe((data: any) => {
       console.log(data); // Aquí tienes acceso a los datos del archivo JSON
-      this.viajes = data;
-      this.viajes = data.map((viaje: any) => {
+      let viajesList = data;
+      viajesList = data.map((viaje: any) => {
         return {
           ...viaje,
           fecha: new Date(viaje.fecha).toISOString().substring(0, 10)
         };
       });
+
+      this.selectedViaje = data[this.selectedIndex];
+      //this.pasajeros = this.selectedViaje.pasajeros;
+      this.viajes.next(viajesList);
     });
   }
+
+  verPasajeros(id: string): void {
+    const viajesActuales = this.viajes.value;
+    const viajeActual = viajesActuales.find((viaje:any)=>viaje.id == parseInt(id));
+    const viajeActualIndex = viajesActuales.findIndex((viaje:any)=>viaje.id == parseInt(id));
+    console.log(viajeActual);
+    if(viajeActual){
+      this.selectedViaje = viajeActual;
+      this.selectedIndex = viajeActualIndex;
+      //this.pasajeros = viajeActual.pasajeros;
+      console.log(viajeActual);
+    }
+    this.showPopup = true;
+  }
+  cerrarPopup():void {
+    this.showPopup = false;
+  }
+  
 }

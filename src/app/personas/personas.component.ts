@@ -44,6 +44,7 @@ export class PersonasComponent {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
+        //se elimina la persona
         this.http.delete('http://localhost:3000/api/personas/eliminar/' + id,  { observe: 'response' }).subscribe(
           response => {
             if (response.status === 200) {
