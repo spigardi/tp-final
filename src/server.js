@@ -482,9 +482,10 @@ function eliminarPasajero(req,res) {
       //buscar en los pasajeros de ese viaje el id de la persona a eliminar
       const personaIndex = viajeExistente.pasajeros.findIndex((persona) => persona.id === parseInt(personId));
       if (personaIndex !== -1) {
-        viajeExistente.pasajeros.splice(personaIndex, 1);
+        //significa que la persona esta en la lista de pasajeros
+        viajeExistente.pasajeros.splice(personaIndex, 1);//elimina
       } else {
-        res.status(404).send('Viaje no encontrado');
+        res.status(404).send('Pasajero no encontrado');
         return;
       }
       //reemplazo en la lista

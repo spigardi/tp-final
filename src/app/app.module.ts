@@ -47,7 +47,8 @@ import { PasajerosComponent } from './pasajeros/pasajeros.component';
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

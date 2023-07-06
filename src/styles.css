@@ -1,4 +1,122 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+:root {
+    --color-primary: white;
+    --color-secondary: #1c1c1c;
+    --color-terciary: #ebff82;
+    --color-green: #425818;
+}
+
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background-color: var(--color-terciary);
+}
+footer{
+    height:100px;
+    width:100vw;
+    background-color:var(--color-secondary);
+    padding-right:40px;
+    padding-top:20px;
+    box-sizing: border-box;
+}
+footer p{
+    text-align:right;
+    color:var(--color-terciary);
+}
+header{
+    height:60px;
+    background-color: var(--color-secondary);
+    padding-left:40px;
+    display:flex;
+    align-items:center;
+}
+header h3{
+    color:var(--color-terciary);
+    margin-bottom:0 !important;
+}
+
+.gral-container{
+    padding:40px;
+    min-height:calc(100vh - 208px);
+    box-sizing:border-box;
+}
+
+.btn-add{
+    text-decoration: none;
+    border: 1px solid var(--color-secondary);
+    padding: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin: 20px 0;
+    background-color:var(--color-primary);
+    color:var(--color-secondary);
+    position:absolute;
+    top:120px;
+}
+.btn-add:hover{
+    background-color:var(--color-secondary);
+    border: 1px solid var(--color-primary);
+    color:var(--color-primary);
+}
+
+.form-group .mdc-text-field{
+    box-sizing:content-box !important;
+}
+
+.form-group.date-input .mdc-text-field{
+    width:418px;
+}
+
+.mat-mdc-form-field {
+    width:400px;
+  }
+form{
+    margin-bottom:20px;
+    width:400px;
+    margin:auto;
+}
+.volverAlListado {
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    display:block;
+    color:var(--color-green);
+  }
+.volverAlListado:hover{
+    color:var(--color-secondary);
+}
+h2{
+    text-align: center;
+}
+
+.table-action{
+    cursor:pointer;
+    color:var(--color-secondary);
+}
+.table-action:hover{
+    color:var(--color-green);
+}
+
+.mat-mdc-tab.mdc-tab--active:hover .mdc-tab__text-label {
+    color: var(--color-secondary) !important;
+  }
+.mdc-tab__text-label {
+    color: var(--color-secondary) !important;
+  }
+
+  .mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
+    --mdc-tab-indicator-active-indicator-color:var(--color-secondary) !important;
+    --mat-tab-header-active-label-text-color: var(--color-secondary) !important;
+    --mat-tab-header-active-ripple-color: var(--color-secondary) !important;
+    --mat-tab-header-inactive-ripple-color: var(--color-secondary) !important;
+    --mat-tab-header-active-focus-label-text-color: var(--color-secondary) !important;
+    --mat-tab-header-active-hover-label-text-color: var(--color-secondary) !important;
+    --mat-tab-header-active-focus-indicator-color: var(--color-secondary) !important;
+    --mat-tab-header-active-hover-indicator-color: var(--color-secondary) !important;
+}
+
+

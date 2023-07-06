@@ -12,12 +12,6 @@
     "colectivo": "JKL012",
     "pasajeros": [
       {
-        "id": 4,
-        "nombre": "Ana",
-        "apellido": "Martínez",
-        "edad": 28
-      },
-      {
         "id": 5,
         "nombre": "Pedro",
         "apellido": "Rodríguez",

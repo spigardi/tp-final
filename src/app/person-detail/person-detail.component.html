@@ -2,28 +2,25 @@
 
 <form [formGroup]="personForm" (submit)="onSubmit()">
     <div class="form-group">
-      <label for="nombre">Nombre</label>
-      <input type="text" formControlName="nombre">
-      <div *ngIf="personForm.controls['nombre'].invalid && personForm.controls['nombre'].touched">
-        <div class="alert alert-danger">Nombre es requerido</div>
-      </div>
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre">
+      </mat-form-field>      
     </div>
     <div class="form-group">
-      <label for="apellido">Apellido</label>
-      <input type="text" formControlName="apellido">
-      <div *ngIf="personForm.controls['apellido'].invalid && personForm.controls['apellido'].touched">
-        <div class="alert alert-danger">Apellido es requerido</div>
-      </div>
+      <mat-form-field>
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="apellido">
+      </mat-form-field>      
     </div>
     <div class="form-group">
-      <label for="edad">Edad</label>
-      <input type="number" formControlName="edad">
-      <div *ngIf="personForm.controls['edad'].invalid && personForm.controls['edad'].touched">
-        <div class="alert alert-danger">Edad es requerida</div>
-      </div>
+      <mat-form-field>
+        <mat-label>Edad</mat-label>
+        <input matInput formControlName="edad">
+      </mat-form-field>      
     </div>
-    <button type="submit" [disabled]="personForm.invalid">Guardar</button>
-    
+    <button mat-raised-button type="submit" [disabled]="personForm.invalid">Guardar</button>
+    <a class="volverAlListado" routerLink="/personas">Volver al listado</a>
   </form>
-  <a routerLink="/personas">Volver al listado</a>
+  
   

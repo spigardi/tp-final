@@ -2,36 +2,32 @@
 
 <form [formGroup]="colectivosForm" (submit)="onSubmit()">
     <div class="form-group">
-      <label for="patente">patente</label>
-      <input type="text" formControlName="patente">
-      <div *ngIf="colectivosForm.controls['patente'].invalid && colectivosForm.controls['patente'].touched">
-        <div class="alert alert-danger">Nombre es requerido</div>
-      </div>
+      <mat-form-field>
+        <mat-label>Patente</mat-label>
+        <input matInput formControlName="patente">
+      </mat-form-field>
     </div>
     <div class="form-group">
-      <label for="cantidadAsientos">cantidadAsientos</label>
-      <input type="text" formControlName="cantidadAsientos">
-      <div *ngIf="colectivosForm.controls['cantidadAsientos'].invalid && colectivosForm.controls['cantidadAsientos'].touched">
-        <div class="alert alert-danger">cantidadAsientos es requerido</div>
-      </div>
+      <mat-form-field>
+        <mat-label>Cantida De Asientos</mat-label>
+        <input matInput formControlName="cantidadAsientos">
+      </mat-form-field>
     </div>
     <div class="form-group">
-      <label for="modelo">modelo</label>
-      <input type="text" formControlName="modelo">
-      <div *ngIf="colectivosForm.controls['modelo'].invalid && colectivosForm.controls['modelo'].touched">
-        <div class="alert alert-danger">modelo es requerida</div>
-      </div>
+      <mat-form-field>
+        <mat-label>Modelo</mat-label>
+        <input matInput formControlName="modelo">
+      </mat-form-field>
     </div>
     <div class="form-group">
-        <label for="marca">marca</label>
-        <input type="text" formControlName="marca">
-        <div *ngIf="colectivosForm.controls['marca'].invalid && colectivosForm.controls['marca'].touched">
-          <div class="alert alert-danger">marca es requerida</div>
-        </div>
+      <mat-form-field>
+        <mat-label>Marca</mat-label>
+        <input matInput formControlName="marca">
+      </mat-form-field>
       </div>
     
     
-    <button type="submit" [disabled]="colectivosForm.invalid">Guardar</button>
-    
+    <button mat-raised-button type="submit" [disabled]="colectivosForm.invalid">Guardar</button>
+    <a class="volverAlListado" routerLink="/colectivos">Volver al listado</a>
   </form>
-  <a routerLink="/colectivos">Volver al listado</a>
+  

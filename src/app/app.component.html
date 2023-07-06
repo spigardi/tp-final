@@ -1,3 +1,6 @@
+<header>
+  <h3>Mechabus</h3>
+</header>
 <mat-tab-group (selectedTabChange)="onTabChange($event)">
   <mat-tab label="Personas" routerLink="/personas">
 
@@ -10,5 +13,13 @@
     
   </mat-tab>
 </mat-tab-group>
+<div class="gral-container">
+  <router-outlet></router-outlet>
+</div>
 
-<router-outlet></router-outlet>
+
+
+<footer>
+  <!-- Contenido del footer -->
+  <p>© Mechabus - Todos los derechos reservados</p>
+</footer>

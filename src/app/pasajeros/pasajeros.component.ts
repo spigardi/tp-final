@@ -103,30 +103,43 @@ export class PasajerosComponent implements OnInit{
   }
 
   borrarPasajero(id:string):void {
-    console.log("borrar persona "+id+"de viaje "+this.viaje.id);
-    this.http.delete('http://localhost:3000/api/viajes/pasajeros/eliminar/'+this.viaje.id+'/'+id, { observe: 'response' }).subscribe(
-      response => {
-        if (response.status === 200) {
-          console.log('El pasajero se eliminó exitosamente.');
-          Swal.fire({
-            title: '¡Éxito!',
-            text: 'El pasajero se eliminó exitosamente.',
-            icon: 'success',
-            confirmButtonText: 'Aceptar'
-          });
-          //actualizo tabla
-          this.actualizar.emit();
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Deseas eliminar este pasajero?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.http.delete('http://localhost:3000/api/viajes/pasajeros/eliminar/'+this.viaje.id+'/'+id, { observe: 'response' }).subscribe(
+          response => {
+            if (response.status === 200) {
+              console.log('El pasajero se eliminó exitosamente.');
+              Swal.fire({
+                title: '¡Éxito!',
+                text: 'El pasajero se eliminó exitosamente.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+              });
+              //actualizo tabla
+              this.actualizar.emit();
 
-          //limpio form
-          this.nuevoPasajeroForm.reset();
-        } else {
-          console.log('Ocurrió un error al eliminar al pasajero.');
+              //limpio form
+              this.nuevoPasajeroForm.reset();
+            } else {
+              console.log('Ocurrió un error al eliminar al pasajero.');
+            }
+          },
+          error => {
+            console.log('Ocurrió un error en la solicitud HTTP.');
         }
-      },
-      error => {
-        console.log('Ocurrió un error en la solicitud HTTP.');
-    }
-    );
+        );
+      } else {
+        console.log("cancelado");
+      }
+    });
+
   }
 
 }

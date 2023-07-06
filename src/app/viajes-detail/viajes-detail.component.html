@@ -2,79 +2,67 @@
 
 <form [formGroup]="viajesForm" (submit)="onSubmit()">
   <div class="form-group">
-    <label for="origen">Origen</label>
-    <input type="text" formControlName="origen">
-    <div *ngIf="viajesForm.controls['origen'].invalid && viajesForm.controls['origen'].touched">
-      <div class="alert alert-danger">El origen es requerido</div>
-    </div>
+    <mat-form-field>
+      <mat-label>Origen</mat-label>
+      <input matInput formControlName="origen">
+    </mat-form-field>      
   </div>
   <div class="form-group">
-    <label for="destino">Destino</label>
-    <input type="text" formControlName="destino">
-    <div *ngIf="viajesForm.controls['destino'].invalid && viajesForm.controls['destino'].touched">
-      <div class="alert alert-danger">El destino es requerido</div>
-    </div>
+    <mat-form-field>
+      <mat-label>Destino</mat-label>
+      <input matInput formControlName="destino">
+    </mat-form-field>      
   </div>
-  <div class="form-group">
-    <label for="fecha">Fecha</label>
-    <input type="text" formControlName="fecha" matInput [matDatepicker]="picker">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-    <div *ngIf="viajesForm.controls['fecha'].invalid && viajesForm.controls['fecha'].touched">
-      <div class="alert alert-danger">La fecha es requerida</div>
-    </div>
+  <div class="form-group date-input">
+    <mat-form-field>
+      <mat-label>Fecha</mat-label>
+      <input type="text" formControlName="fecha" matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field> 
   </div>  
   <div class="form-group">
-    <label for="hora">Hora</label>
-    <input type="time" formControlName="hora" matInput>
-    <div *ngIf="viajesForm.controls['hora'].invalid && viajesForm.controls['hora'].touched">
-      <div class="alert alert-danger">La hora es requerida</div>
-    </div>
+    <mat-form-field>
+      <mat-label>Hora</mat-label>
+      <input type="time" formControlName="hora" matInput>
+    </mat-form-field>
   </div>  
   <div class="form-group">
-    <label for="lugarSalida">Lugar de salida</label>
-    <input type="text" formControlName="lugarSalida">
-    <div *ngIf="viajesForm.controls['lugarSalida'].invalid && viajesForm.controls['lugarSalida'].touched">
-      <div class="alert alert-danger">El lugar de salida es requerido</div>
-    </div>
+    <mat-form-field>
+      <mat-label>Lugar de salida</mat-label>
+        <input matInput formControlName="lugarSalida">
+      </mat-form-field> 
   </div>
   <div class="form-group">
-    <label for="lugarDestino">Lugar de destino</label>
-    <input type="text" formControlName="lugarDestino">
-    <div *ngIf="viajesForm.controls['lugarDestino'].invalid && viajesForm.controls['lugarDestino'].touched">
-      <div class="alert alert-danger">El lugar de destino es requerido</div>
-    </div>
+    <mat-form-field>
+      <mat-label>Lugar de destino</mat-label>
+        <input matInput formControlName="lugarDestino">
+      </mat-form-field> 
   </div>
   <div class="form-group">
-    <label for="horaSalidaEstimada">Hora de salida estimada</label>
-    <input type="time" formControlName="horaSalidaEstimada" matInput>
-    <div *ngIf="viajesForm.controls['horaSalidaEstimada'].invalid && viajesForm.controls['horaSalidaEstimada'].touched">
-      <div class="alert alert-danger">La hora de salida estimada es requerida</div>
-    </div>
+    <mat-form-field>
+      <mat-label>Hora de salida estimada</mat-label>
+      <input type="time" formControlName="horaSalidaEstimada" matInput>
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <label for="horaLlegadaEstimada">Hora de llegada estimada</label>
-    <input type="time" formControlName="horaLlegadaEstimada" matInput>
-    <div *ngIf="viajesForm.controls['horaLlegadaEstimada'].invalid && viajesForm.controls['horaLlegadaEstimada'].touched">
-      <div class="alert alert-danger">La hora de llegada estimada es requerida</div>
-    </div>
+    <mat-form-field>
+      <mat-label>Hora de llegada estimada</mat-label>
+      <input type="time" formControlName="horaLlegadaEstimada" matInput>
+    </mat-form-field>>
   </div>
   <div class="form-group">
-    <label for="colectivo">Colectivo</label>
     <mat-form-field appearance="fill">
       <mat-label>Colectivo</mat-label>
       <mat-select formControlName="colectivo">
         <mat-option *ngFor="let colectivo of colectivosList" [value]="colectivo">{{ colectivo }}</mat-option>
       </mat-select>
     </mat-form-field>
-    <div *ngIf="viajesForm.controls['colectivo'].invalid && viajesForm.controls['colectivo'].touched">
-      <div class="alert alert-danger">El colectivo es requerido</div>
-    </div>
   </div>
   
 
-  <button type="submit" [disabled]="viajesForm.invalid">Guardar</button>
-
+  <button mat-raised-button type="submit" [disabled]="viajesForm.invalid">Guardar</button>
+  <a class="volverAlListado" routerLink="/viajes">Volver al listado</a>
 </form>
 
-<a routerLink="/viajes">Volver al listado</a>
+

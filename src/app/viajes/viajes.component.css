@@ -6,9 +6,15 @@
     top:10vh;
     background:white;
     border:1px solid black;
+    z-index:4;
+    border-radius:5px;
+    padding:20px;
+    box-sizing: border-box;
+    overflow-y:auto;
 }
 .close-btn{
     position:fixed;
-    right:15vw;
-    top:11vh;
+    right:16vw;
+    top:12vh;
+    cursor:pointer;
 }

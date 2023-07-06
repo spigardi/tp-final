@@ -1,5 +1,5 @@
 
-<a routerLink="/viajes/agregar">nuevo</a>
+<a class="btn-add" routerLink="/viajes/agregar">+</a>
 
 <h2>Viajes</h2>
 
@@ -33,34 +33,34 @@
     <td mat-cell *matCellDef="let viaje"> {{viaje.lugarDestino}} </td>
   </ng-container>
   <ng-container matColumnDef="horaSalidaEstimada">
-    <th mat-header-cell *matHeaderCellDef> hora de salida estimada </th>
+    <th mat-header-cell *matHeaderCellDef> Hora de salida estimada </th>
     <td mat-cell *matCellDef="let viaje"> {{viaje.horaSalidaEstimada}} </td>
   </ng-container>
   <ng-container matColumnDef="horaLlegadaEstimada">
-    <th mat-header-cell *matHeaderCellDef> hora llegada estimada </th>
+    <th mat-header-cell *matHeaderCellDef> Hora de llegada estimada </th>
     <td mat-cell *matCellDef="let viaje"> {{viaje.horaLlegadaEstimada}} </td>
   </ng-container>
   <ng-container matColumnDef="colectivo">
-    <th mat-header-cell *matHeaderCellDef> colectivo </th>
+    <th mat-header-cell *matHeaderCellDef> Colectivo </th>
     <td mat-cell *matCellDef="let viaje"> {{viaje.colectivo}} </td>
   </ng-container>
   <ng-container matColumnDef="pasajeros">
     <th mat-header-cell *matHeaderCellDef> pasajeros </th>
     <td mat-cell *matCellDef="let viaje"> 
       {{viaje.pasajeros.length}}
-      <a (click)="verPasajeros(viaje.id)">
+      <a class="table-action" (click)="verPasajeros(viaje.id)">
         <mat-icon>create</mat-icon>
       </a>
     </td>
   </ng-container>
   <!-- Columna Accion -->
   <ng-container matColumnDef="accion">
-    <th mat-header-cell *matHeaderCellDef> Accion </th>
+    <th mat-header-cell *matHeaderCellDef> Acción </th>
     <td mat-cell *matCellDef="let viaje"> 
-      <a [routerLink]="'/viajes/editar/' + viaje.id">
+      <a class="table-action" [routerLink]="'/viajes/editar/' + viaje.id">
         <mat-icon>create</mat-icon>
       </a>
-      <a (click)="borrarViaje(viaje.id)">
+      <a class="table-action" (click)="borrarViaje(viaje.id)">
         <mat-icon>delete</mat-icon>
       </a>
     </td>
